@@ -40,5 +40,4 @@ class Arrowhead
     end
   end
 end
-
 puts Arrowhead.classify(:northern_plains, :bifurcated)
