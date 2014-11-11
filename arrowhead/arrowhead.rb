@@ -19,23 +19,26 @@ class Arrowhead
 
   # FIXME: I don't have time to deal with this.
   def self.classify(region, shape)
-    shapes = CLASSIFICATIONS[region]
-    arrowhead =  CLASSIFICATIONS[region][shape] if shapes
-    # binding.pry
-    # # arrowhead = CLASSIFICATIONS[shape]
-    # raise "Unknown region, please provide a valid region." unless shapes
-    # if arrowhead && shapes
-    #   puts "You have a(n) '#{arrowhead}' arrowhead. Probably priceless."
-    # else
-    #   p "Unknown shape. Are you sure you know what you're talking about?"
-    # end
-    p "You have a(n) '#{arrowhead}' arrowhead. Probably priceless" if arrowhead
-    if shapes && !arrowhead
+    @shapes = Arrowhead.region_check(region)
+    arrowhead = Arrowhead.shape_check(shape)
+    puts "You have a(n) '#{arrowhead}' arrowhead. Probably priceless."
+  end
+
+  def self.region_check(region)
+    if CLASSIFICATIONS[region]
+      CLASSIFICATIONS[region]
+    else
       raise "Unknown region, please provide a valid region."
-    elsif !shapes && !arrowhead
+    end
+  end
+
+  def self.shape_check(shape)
+    if @shapes[shape]
+      @shapes[shape]
+    else
       raise "Unknown shape. Are you sure you know what you're talking about?"
     end
   end
 end
 
-puts Arrowhead.classify(:northern_plains, :test)
+puts Arrowhead.classify(:northern_plains, :bifurcated)
