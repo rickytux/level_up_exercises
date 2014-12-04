@@ -1,0 +1,16 @@
+<head>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="js/application.js"></script>
+<script src="js/flipclock.min.js"></script>
+</head>
+<%="Welcome to Your Evil Lair"%>
+<br>
+<div class="your-clock"></div>
+<%="Your Bomb is: "%>
+<% if session[:status] == 1%>
+<span style="color:red"><%= "Active"%></span>
+<%else%>
+<span style="color:green":><%="Inactive"%></span>
+<%end%>
+<%=erb :_form%>
