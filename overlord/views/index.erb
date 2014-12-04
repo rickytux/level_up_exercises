@@ -8,9 +8,6 @@
 <br>
 <div class="your-clock"></div>
 <%="Your Bomb is: "%>
-<% if session[:status] == 1%>
-<span style="color:red"><%= "Active"%></span>
-<%else%>
-<span style="color:green":><%="Inactive"%></span>
-<%end%>
+<span id="status" style="color:red"><%= "Inactive"%></span>
+
 <%=erb :_form%>

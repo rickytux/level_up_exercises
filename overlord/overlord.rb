@@ -9,18 +9,7 @@ get '/' do
 end
 
 post '/form' do
-  if params[:message] == "1234"
-    if session[:status] == 1
-      session[:status] = 0
-    else
-      session[:status] = 1
-    end
-    redirect '/'
-  else
-    erb :wrong_code
-    sleep 2
-    redirect '/'
-  end
+  "wrong"
 end
 
 # we can shove stuff into the session cookie YAY!
