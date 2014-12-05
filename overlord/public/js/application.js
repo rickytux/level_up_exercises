@@ -1,4 +1,7 @@
 var intruder = 0
+var timer;
+var c = 0
+var timer_is_on = 0
 $(window).load(function() {
     var obj = JSON.parse(localStorage.yourObject || '{"Status": ""}')
     document.getElementById('status').innerHTML = obj.Status
@@ -15,13 +18,21 @@ $(window).load(function() {
                     document.getElementById('status').innerHTML = "Activated"
                     obj.Status = "Activated";
                     localStorage.yourObject = JSON.stringify(obj);
-                    var time = new Date().getTime();
-                    console.log(time)
+                    timer = setTimeout(function() {
+                        alert('boom');
+                        document.getElementById('status').innerHTML = "Detonated"
+                        $('form').remove();
+                        $('#status').append("</div><div id="domination">\nThe World is yours");
+                        obj.Status = "Inactive";
+                        localStorage.yourObject = JSON.stringify(obj);
+                    }, 10000);
                 } else {
                     alert('Launch sequence aborted')
 
+
                 }
             } else {
+                clearTimeout(timer);
                 document.getElementById('status').innerHTML = "Inactive"
                 obj.Status = "Inactive";
                 localStorage.yourObject = JSON.stringify(obj);
@@ -32,14 +43,14 @@ $(window).load(function() {
             document.getElementById("form").reset();
             switch(intruder) {
                 case 1:
-                    $(this).append("<div class='warning'><br>Possible intruder detected</div>")
+                    $(this).append("<div class='warning'>\nPossible intruder detected</div>")
                 break;
                 case 2:
-                    $(this).append("<br><div class='warning'>Activating defensive measures</div>")
+                    $(this).append("<div class='warning'>\nActivating defensive measures</div>")
                 break;
                 default:
                     $('#form').hide();
-                    $(this).parent().append("<br>Self Destruct imminent")
+                    $(this).parent().append("\nSelf Destruct imminent")
                     document.getElementById('status').innerHTML = "Detonated"
                     obj.Status = "Inactive";
                     localStorage.yourObject = JSON.stringify(obj);
@@ -48,3 +59,33 @@ $(window).load(function() {
 
     });
 });
+function myStopFunction() {
+    clearTimeout(myVar);
+}
+// <button onclick="startCount()">Start count!</button>
+// <input type="text" id="txt">
+// <button onclick="stopCount()">Stop count!</button>
+
+// <script>
+// var c = 0;
+// var t;
+// var timer_is_on = 0;
+
+// function timedCount() {
+//     document.getElementById("txt").value = c;
+//     c = c + 1;
+//     t = setTimeout(function(){timedCount()}, 1000);
+// }
+
+// function startCount() {
+//     if (!timer_is_on) {
+//         timer_is_on = 1;
+//         timedCount();
+//     }
+// }
+
+// function stopCount() {
+//     clearTimeout(t);
+//     timer_is_on = 0;
+// }
+// </script>
