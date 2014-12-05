@@ -7,6 +7,8 @@ $(window).load(function() {
         var test = $('#message').val()
         document.getElementById("form").reset();
         if(test == '1234') {
+            intruder = 0
+            $('.warning').remove();
             if ($('#status').text() == "Inactive"){
                 var r  = confirm("Activate the bomb?");
                 if (r==true) {
@@ -21,7 +23,7 @@ $(window).load(function() {
                 }
             } else {
                 document.getElementById('status').innerHTML = "Inactive"
-                obj.Status = "Inactivate";
+                obj.Status = "Inactive";
                 localStorage.yourObject = JSON.stringify(obj);
 
             }
@@ -30,10 +32,10 @@ $(window).load(function() {
             document.getElementById("form").reset();
             switch(intruder) {
                 case 1:
-                    $(this).append("<br>Possible intruder detected")
+                    $(this).append("<div class='warning'><br>Possible intruder detected</div>")
                 break;
                 case 2:
-                    $(this).append("<br>Activating defensive measures")
+                    $(this).append("<br><div class='warning'>Activating defensive measures</div>")
                 break;
                 default:
                     $('#form').hide();
