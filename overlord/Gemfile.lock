@@ -1,6 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    jquery (0.0.1)
     rack (1.5.2)
     rack-protection (1.5.3)
       rack
@@ -15,3 +16,4 @@ PLATFORMS
 
 DEPENDENCIES
   sinatra
+  jquery
