@@ -21,4 +21,4 @@ World do
   LairWorld.new
 end
 
-Capybara.default_driver = :poltergeist
+Capybara.javascript_driver = :poltergeist

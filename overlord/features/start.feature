@@ -2,7 +2,8 @@ Feature: I visit the home page
 
   Background:
     Given I go to the home page
-
-  Scenario: I get to the page
-    When I try to start the bomb with the default codes
-    Then I should see the bomb is "Activated"
+    Then The bomb is not activated
+  # @javascript
+  Scenario: I enter correct code for the bomb
+    Given I try to start the bomb with the code
+    Then It should be activated

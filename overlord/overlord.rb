@@ -11,9 +11,4 @@ class Lair < Sinatra::Base
   post '/form' do
     "wrong"
   end
-
-  # we can shove stuff into the session cookie YAY!
-  def start_time
-    session[:start_time] ||= (Time.now).to_s
-  end
 end

@@ -3,34 +3,26 @@ var timer;
 var c = 0
 var timer_is_on = 0
 $(window).load(function() {
-    var obj = JSON.parse(localStorage.yourObject || '{"Status": ""}')
-    document.getElementById('status').innerHTML = obj.Status
+    var obj = JSON.parse(localStorage.yourObject || '{"Status": "", countdown: ""}')
+    document.getElementById('status').innerHTML = obj.Status;
     $('form').on('submit', function(event) {
         event.preventDefault();
-        var test = $('#message').val()
+        var test = $('#message').val();
         document.getElementById("form").reset();
         if(test == '1234') {
-            intruder = 0
+            intruder = 0;
             $('.warning').remove();
             if ($('#status').text() == "Inactive"){
-                var r  = confirm("Activate the bomb?");
-                if (r==true) {
-                    document.getElementById('status').innerHTML = "Activated"
-                    obj.Status = "Activated";
+                document.getElementById('status').innerHTML = "Activated"
+                obj.Status = "Activated";
+                localStorage.yourObject = JSON.stringify(obj);
+                timer = setTimeout(function() {
+                    document.getElementById('status').innerHTML = "Detonated"
+                    $('form').remove();
+                    $('#status').append("</div><div id='domination'>\nThe World is at your command");
+                    obj.Status = "Inactive";
                     localStorage.yourObject = JSON.stringify(obj);
-                    timer = setTimeout(function() {
-                        alert('BOOOOOOOOOOOOOOOOOOOOOM');
-                        document.getElementById('status').innerHTML = "Detonated"
-                        $('form').remove();
-                        $('#status').append("</div><div id='domination'>\nThe World is at your command");
-                        obj.Status = "Inactive";
-                        localStorage.yourObject = JSON.stringify(obj);
-                    }, 10000);
-                } else {
-                    alert('Launch sequence aborted')
-
-
-                }
+                }, 10000);
             } else {
                 clearTimeout(timer);
                 document.getElementById('status').innerHTML = "Inactive"
